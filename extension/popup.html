@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img src="icons/icon32.png" alt="" />
+      <span>vx</span>
+    </div>
+    <div class="head-right">
+      <span id="daemon-dot" class="dot off" title="daemon status"></span>
+      <button id="btn-options" class="icon-btn" title="Settings">⚙</button>
+    </div>
+  </header>
+
+  <section class="card master-card">
+    <div class="master-left">
+      <div class="master-title">Browser proxy</div>
+      <div id="master-sub" class="sub">local xray · 127.0.0.1</div>
+    </div>
+    <label class="switch">
+      <input type="checkbox" id="master-toggle" />
+      <span class="slider"></span>
+    </label>
+  </section>
+
+  <section class="card">
+    <div class="row">
+      <label for="group-select">Group</label>
+      <select id="group-select"></select>
+      <button id="btn-refresh" class="mini" title="Re-fetch subscription/file links for this group">↻</button>
+      <button id="btn-ping" class="mini" title="Ping all nodes now">Ping</button>
+    </div>
+    <div class="modes" id="modes">
+      <button data-mode="direct">Direct</button>
+      <button data-mode="urltest">Lowest ping</button>
+      <button data-mode="balance">Balance</button>
+    </div>
+    <div id="manual-hint" class="sub hidden"></div>
+  </section>
+
+  <section class="card">
+    <div class="nodes-head">
+      <span>Nodes</span>
+      <span id="node-count" class="sub"></span>
+    </div>
+    <div id="nodes" class="nodes"></div>
+  </section>
+
+  <section class="card tab-card">
+    <div class="tab-info">
+      <div class="master-title">This tab</div>
+      <div id="tab-title" class="sub ellipsis">—</div>
+    </div>
+    <label class="switch">
+      <input type="checkbox" id="tab-toggle" />
+      <span class="slider"></span>
+    </label>
+  </section>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

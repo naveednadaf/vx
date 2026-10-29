@@ -1,0 +1,19 @@
+# Build artifacts
+bin/
+dist/
+vxbar/build/
+
+# User node data — NEVER commit real server links/credentials
+*.txt
+*.b64
+*.tsv
+urls
+urls_*
+
+# Local state
+*.json.tmp
+.DS_Store
+
+# Editor
+.idea/
+.vscode/

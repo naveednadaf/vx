@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>vx — settings</title>
+  <link rel="stylesheet" href="popup.css" />
+  <style>
+    body { width: auto; max-width: 720px; margin: 0 auto; padding: 20px; }
+    h1 { font-size: 18px; display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    h1 img { width: 26px; height: 26px; }
+    h2 { font-size: 14px; margin: 22px 0 8px; color: var(--text); }
+    .sub-row { display: flex; gap: 10px; align-items: center; margin: 10px 0; flex-wrap: wrap; }
+    input[type=text], input[type=number], textarea {
+      background: var(--card2); color: var(--text); border: 1px solid #30363d;
+      border-radius: 7px; padding: 7px 9px; font-size: 13px;
+    }
+    textarea { width: 100%; min-height: 130px; font-family: ui-monospace, Menlo, monospace; font-size: 12px; }
+    textarea::placeholder { color: #484f58; }
+    button.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #04121b;
+      border: none; border-radius: 7px; padding: 8px 16px; font-weight: 700; cursor: pointer; font-size: 13px;
+    }
+    button.primary:hover { filter: brightness(1.1); }
+    button.ghost {
+      background: var(--card2); color: var(--text); border: 1px solid #30363d;
+      border-radius: 7px; padding: 6px 12px; cursor: pointer; font-size: 12px;
+    }
+    button.ghost:hover { border-color: var(--accent); }
+    button.ghost.danger:hover { border-color: var(--danger); color: var(--danger); }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid #21262d; }
+    th { color: var(--muted); font-weight: 500; font-size: 12px; }
+    tr.active td { color: var(--accent); }
+    td.actions { text-align: right; white-space: nowrap; }
+    td.actions button { margin-left: 6px; }
+    .hint { color: var(--muted); font-size: 12px; margin-top: 6px; }
+    .warn { color: var(--warn); font-size: 12px; margin-top: 6px; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1><img src="icons/icon48.png" alt="" /> vx <span class="sub">local proxy control</span></h1>
+  <div class="hint">xray runs on 127.0.0.1 only — this never touches your system proxy.</div>
+
+  <h2>Connection</h2>
+  <div class="sub-row">
+    <label>Control API port</label>
+    <input type="number" id="api-port" min="1024" max="65535" style="width: 100px" />
+    <button class="ghost" id="btn-save-port">Save</button>
+    <span id="daemon-state" class="sub"></span>
+  </div>
+
+  <h2>Add nodes</h2>
+  <div class="sub-row">
+    <label>Group</label>
+    <input type="text" id="new-group" placeholder="e.g. hk" style="width: 180px" />
+  </div>
+  <textarea id="sources" placeholder="Paste one per line:
+vless://uuid@host:port?...#name
+https://subscription.example.com/token
+/path/to/urls.txt"></textarea>
+  <div class="sub-row">
+    <button class="primary" id="btn-add">Add to group</button>
+    <button class="ghost" id="btn-refresh">Refresh subscriptions</button>
+  </div>
+  <div id="add-warn" class="warn"></div>
+
+  <h2>Groups</h2>
+  <table>
+    <thead>
+      <tr><th>Name</th><th>Nodes</th><th>Sources</th><th>Updated</th><th></th></tr>
+    </thead>
+    <tbody id="groups-body"></tbody>
+  </table>
+  <div id="table-empty" class="hint"></div>
+
+  <script src="options.js"></script>
+</body>
+</html>

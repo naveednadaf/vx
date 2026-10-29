@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "vx — local proxy control",
+  "version": "0.1.0",
+  "description": "Per-tab browser proxy for the local vx xray daemon: groups, ping, balance and lowest-ping modes.",
+  "permissions": ["proxy", "storage", "tabs", "alarms"],
+  "host_permissions": ["http://127.0.0.1/*", "http://localhost/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "vx proxy",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
